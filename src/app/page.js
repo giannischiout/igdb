@@ -1,19 +1,26 @@
+
+
+
+import { fetchArtwork } from "../../utils/functionsIDGB";
 import Image from "next/image";
-import styles from "./page.module.css";
-
-
-
-
-
+import Link from "next/link";
 export default async function Home() {
 
-  const auth = await fetch('localhost:3000/api/auth');
-  console.log('auth')
-  console.log(auth)
-  
+  const data = await fetchArtwork(`(20196,45131,136482,135478,11226,51267,143761,115425,115776,22439)`)
+  console.log('data')
+  console.log(data.length)
+ 
   return (
       <div>
-          test
+          {data.map((item, index) => {
+            return (
+              <div key={index} >
+                 <Link href={`https://images.igdb.com/igdb/image/upload/t_screenshot_huge/${item.image_id}.jpg`}>
+                {item.image_id}
+              </Link>
+              </div>
+            )
+          })}
       </div>
   );
 }
