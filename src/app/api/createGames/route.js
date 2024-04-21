@@ -1,6 +1,6 @@
 
 import {parseISO, getTime} from 'date-fns';
-import {fetchArtwork, fetchGames, fetchImages } from '../../../../utils/functionsIDGB';
+import { fetchAgeRatings, fetchGames, fetchSimilarGames, fetchGenres } from '../../../../utils/functionsIGDB';
 
 
 
@@ -18,12 +18,17 @@ export async function POST(req, res) {
 
 
 	let games = await fetchGames(timestamp, singleGameId, limit);
-	// console.log(games)
-	const gameIds = createIdString(games, 'id');
-	console.log(gameIds)
-	let artworks = await fetchArtwork(gameIds);
-	// console.log(artworks)
-	// console.log(artworks)
+	let genres = await fetchGenres();
+	console.log('genres')
+	console.log(genres)
+	// for(let game of games) {
+	// 	let similarGames = await fetchSimilarGames(game.id);
+	// 	console.log('similarGames')
+	// 	console.log(similarGames);
+	// }
+
+	let age_ratings = await fetchAgeRatings();
+	// console.log(age_ratings)
 
 	return Response.json(games)
 }

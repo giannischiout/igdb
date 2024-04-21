@@ -1,7 +1,7 @@
 
 
 
-import { fetchArtwork } from "../../utils/functionsIDGB";
+import { fetchArtwork } from "../../utils/functionsIGDB";
 import Image from "next/image";
 import Link from "next/link";
 export default async function Home() {
